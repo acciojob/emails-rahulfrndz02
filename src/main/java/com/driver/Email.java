@@ -10,10 +10,6 @@ public class Email {
         this.emailId = emailId;
         this.password = "Accio@123";
     }
-    //default constructor
-    public Email(){
-
-    }
 
     public String getEmailId() {
         return emailId;
@@ -30,9 +26,9 @@ public class Email {
         // 3. It contains at least one lowercase letter
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
-        if(oldPassword == password){
+        if(this.password.equals(oldPassword)){
             if(isValidPassword(newPassword)) {
-                password = newPassword; //assigning password to new password
+                this.password = newPassword; //assigning password to new password
             }
         }
     }
@@ -63,5 +59,4 @@ public class Email {
             // matched the ReGex
             return m.matches();
         }
-
 }

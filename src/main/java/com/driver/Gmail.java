@@ -1,8 +1,6 @@
 package com.driver;
 import com.sun.source.tree.ArrayAccessTree;
 
-import java.util.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -36,10 +34,14 @@ public class Gmail extends Email {
     public void deleteMail(String message){
         // Each message is distinct
         // If the given message is found in any mail in the inbox, move the mail to trash, else do nothing
-        for(Mail mail : inbox) {
-            if(mail.equals(message)) {
-                trash.add(new Mail(mail.date, mail.sender, mail.message));
-                inbox.remove(message);
+        for(int i =0 ; i < inbox.size();i++)
+        {
+            Mail mail = inbox.get(i);
+
+            if(mail.message.equals(message))
+            {
+                trash.add(new Mail(mail.date,mail.sender,mail.message));
+                inbox.remove(mail);
             }
         }
     }
@@ -49,6 +51,7 @@ public class Gmail extends Email {
         // Else, return the message of the latest mail present in the inbox
        if(inbox.size() == 0)
            return null;
+
        Mail mail = inbox.get(0);
        return mail.message;
     }
@@ -68,7 +71,7 @@ public class Gmail extends Email {
         int mailBetweenDates = 0;
         for(int i=0; i<inbox.size(); i++){
             Mail mail = inbox.get(i);
-            if(mail.date.compareTo(start) >= 0 && mail.date.compareTo(end) <=0){
+            if(mail.date.compareTo(start) >= 0 && mail.date.compareTo(end) <= 0){
                 mailBetweenDates++;
             }
         }
@@ -89,10 +92,7 @@ public class Gmail extends Email {
 
     public void emptyTrash(){
         // clear all mails in the trash
-        if(!trash.isEmpty()){
             trash.clear();
-        }
-
     }
 
     public int getInboxCapacity() {

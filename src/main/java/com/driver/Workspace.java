@@ -17,7 +17,6 @@ public class Workspace extends Gmail{
         super(emailId);
         inboxCapacity = Integer.MAX_VALUE;
         calendar = new ArrayList<>();
-
     }
 
     public void addMeeting(Meeting meeting){
@@ -38,7 +37,7 @@ public class Workspace extends Gmail{
         }) ;
         LocalTime limit = calendar.get(0).getEndTime();
         int count =1;
-        for(int i=0 ;i<calendar.size(); i++){
+        for(int i=1 ;i<calendar.size(); i++){
             if(calendar.get(i).getStartTime().compareTo(limit)>0){
                 count++;
                 limit = calendar.get(i).getEndTime();
